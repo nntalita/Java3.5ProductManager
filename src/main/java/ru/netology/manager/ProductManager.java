@@ -35,14 +35,17 @@ public class ProductManager {
     }
 
     public boolean matches(Product product, String search) {
+        if (product.getName().contains(search)) {
+            return true;
+        }
         if (product instanceof Book) { // если в параметре product лежит объект класса Book
             Book book = (Book) product; // положем его в переменную типа Book чтобы пользоваться методами класса Book
             if (book.getAuthor().contains(search)) { // проверим есть ли поисковое слово в данных об авторе
                 return true;
             }
-            if (book.getName().contains(search)) {
-                return true;
-            }
+//            if (book.getName().contains(search)) {
+//                return true;
+//            }
             return false;
         }
         if (product instanceof Smartphone) { // если в параметре product лежит объект класса Smartphone
@@ -50,11 +53,29 @@ public class ProductManager {
             if (smartphone.getMadeBy().contains(search)) { // проверим есть ли поисковое слово в данных об производителе
                 return true;
             }
-            if (smartphone.getName().contains(search)) {
-                return true;
-            }
+//            if (smartphone.getName().contains(search)) {
+//                return true;
+//            }
             return false;
         }
         return false;
+    }
+
+    public Product searchById(int id) {
+
+        Product product = repository.findById(id);
+        return product;
+    }
+
+    public void deleteByid(int id) {
+        Product product = repository.removeById(id);
+
+    }
+
+    public Product[] viewAll() {
+        Product[] products = repository.findAll();
+        return products;
+
+
     }
 }

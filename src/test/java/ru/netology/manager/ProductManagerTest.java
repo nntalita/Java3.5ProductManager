@@ -26,6 +26,7 @@ class ProductManagerTest {
         manager.add(fourth);
         manager.add(fifth);
     }
+
     @Test
     public void shouldSearchEmpty() {
         Product[] actual = manager.searchBy("");
@@ -33,13 +34,15 @@ class ProductManagerTest {
         assertArrayEquals(actual, expected);
 
     }
+
     @Test
     public void shouldSearchByNameProduct() {
         Product[] actual = manager.searchBy("стол");
-        Product[] expected = {};
+        Product[] expected = {first};
         assertArrayEquals(actual, expected);
 
     }
+
     @Test
     public void shouldSearchByNameAndMadeBy() {
         Product[] actual = manager.searchBy("Samsung");
@@ -55,6 +58,7 @@ class ProductManagerTest {
         assertArrayEquals(actual, expected);
 
     }
+
     @Test
     public void shouldSearchByNameSmartphone() {
         Product[] actual = manager.searchBy("Honor");
@@ -62,6 +66,7 @@ class ProductManagerTest {
         assertArrayEquals(actual, expected);
 
     }
+
     @Test
     public void shouldSearchByAutor() {
         Product[] actual = manager.searchBy("Папа Карло");
@@ -70,13 +75,13 @@ class ProductManagerTest {
     }
 
 
-
     @Test
     public void shouldSearchByMadeBy() {
         Product[] actual = manager.searchBy("Huawei");
         Product[] expected = {third};
         assertArrayEquals(actual, expected);
     }
+
     @Test
     public void shouldSearchByNoText() {
         Product[] actual = manager.searchBy("Cat");
@@ -84,4 +89,33 @@ class ProductManagerTest {
         assertArrayEquals(actual, expected);
     }
 
+    @Test
+    public void shouldSearchById() {
+        Product actual = manager.searchById(1111);
+        Product expected = first;
+        assertEquals(actual, expected);
+    }
+
+    @Test
+    public void shouldSearchByMissingId() {
+        Product actual = manager.searchById(11);
+        Product expected = null;
+        assertEquals(actual, expected);
+    }
+
+    @Test
+    public void shouldDeleteById() {
+        manager.deleteByid(1111);
+        Product[] actual = manager.viewAll();
+        Product[] expected = {second, third, fourth, fifth};
+        assertArrayEquals(actual, expected);
+    }
+
+    @Test
+    public void shouldDeleteByMissingId() {
+        manager.deleteByid(1);
+        Product[] actual = manager.viewAll();
+        Product[] expected = {first, second, third, fourth, fifth};
+        assertArrayEquals(actual, expected);
+    }
 }
