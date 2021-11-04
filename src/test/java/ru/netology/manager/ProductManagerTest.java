@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ProductManagerTest {
     private ProductManager manager = new ProductManager(new ProductRepository());
+//    private Product product = new Product();
     private Product first = new Product(1111, "стол", 1000);
     private Book second = new Book(11112, "Синяя", 100, "Папа Карло");
     private Smartphone third = new Smartphone(3333, "Honor", 12000, "Huawei");
@@ -42,6 +43,8 @@ class ProductManagerTest {
         assertArrayEquals(actual, expected);
 
     }
+
+
 
     @Test
     public void shouldSearchByNameAndMadeBy() {
@@ -80,6 +83,7 @@ class ProductManagerTest {
         Product[] expected = {first, second, fifth};
         assertArrayEquals(actual, expected);
     }
+
     @Test
     public void shouldSearchByMadeBy() {
         Product[] actual = manager.searchBy("Huawei");

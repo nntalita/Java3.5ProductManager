@@ -5,6 +5,11 @@ import java.util.Objects;
 public class Smartphone extends Product {
     private String madeBy;
 
+    @Override
+    public boolean matches(String search) {
+        return super.matches(search)||madeBy.contains(search);
+    }
+
     public String getMadeBy() {
         return madeBy;
     }

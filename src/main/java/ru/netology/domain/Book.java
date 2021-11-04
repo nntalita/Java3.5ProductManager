@@ -5,6 +5,11 @@ import java.util.Objects;
 public class Book extends Product {
     private String author;
 
+    @Override
+    public boolean matches(String search) {
+        return super.matches(search)||author.contains(search);
+    }
+
     public String getAuthor() {
         return author;
     }
