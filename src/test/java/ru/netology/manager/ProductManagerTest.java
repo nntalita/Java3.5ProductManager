@@ -74,7 +74,12 @@ class ProductManagerTest {
         assertArrayEquals(actual, expected);
     }
 
-
+    @Test
+    public void shouldSearchByPart() {
+        Product[] actual = manager.searchBy("о");
+        Product[] expected = {first, second, fifth};
+        assertArrayEquals(actual, expected);
+    }
     @Test
     public void shouldSearchByMadeBy() {
         Product[] actual = manager.searchBy("Huawei");
